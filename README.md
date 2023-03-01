@@ -3,7 +3,7 @@ Cyclistic Case Study
 
 This is a  case study for one of Google's Data Analytics Professional Certificate capstone projects. Cyclistic is a fictional bike sharing company based and operating in Chicago. 
 
-I have upload files for the case study using RStudio. I have write step by step analysis to find answers for the business questions, posed by the case study. Important to note, while some steps include removing or deleting data, this is done without changing the original dataset/dataframe. It is never recommended for a junior analyst to make changes to the original data. Removing NULLs or NAs in a dataset/dataframe should be consulted, as it may be used in some analysis-es.
+I have upload pdf files for the case study using RStudio. I have write step by step analysis to find answers for the business questions, posed by the case study. Important to note, while some steps include removing or deleting data, this is done without changing the original dataset/dataframe. It is never recommended for a junior analyst to make changes to the original data. Removing NULLs or NAs in a dataset/dataframe should be consulted, as it may be used in some analysis-es.
 
 About Cyclistic
 
@@ -32,11 +32,13 @@ Monthly Analyses:
 [November 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Nov21.pdf)  
 [December 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Dec21.pdf)  
 
-Quarterly Analyses:  
+Quarterly Analyses:
+
 [First Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q1%202021.pdf)  
 [Second Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q2%202021.pdf)  
 [Third Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q3%202021.pdf)  
 [Fourth Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q4%202021.pdf)  
 
-The Year 2021 Analysis:  
+The Year 2021 Analysis:
+
 [Divvy Trip Data 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%202021%20All%20Trips.pdf)
