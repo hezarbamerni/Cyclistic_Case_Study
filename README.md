@@ -17,7 +17,7 @@ Moreno has set a clear goal: Design marketing strategies aimed at converting cas
 
 An analysis for year 2021 was done to make better marketing business decisions.
 
-A Monthly Analysis:
+Monthly Analyses:
 
 [January 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Jan21.pdf)  
 [February 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Feb21.pdf)  
