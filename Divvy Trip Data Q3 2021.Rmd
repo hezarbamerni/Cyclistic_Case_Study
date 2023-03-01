@@ -1,0 +1,347 @@
+---
+title: "Cyclistic Case Study Q3_2021"
+author: "Hezar K"
+date: "2022-11-29"
+output: html_document
+---
+
+This is an analysis for Cyclistic Case Study for Google Data Analytics Course. This is an analysis for 2021's third quarter.
+
+##### **STEP ONE:** INSTALL REQUIRED PACKAGES AND IMPORT DATA
+
+Install the required packages. **Tidyverse** package to import and wrangling the data and **ggplot2** package for visualization of the data. **Lubridate** package for date parsing and **anytime** package for the datetime conversion.
+
+-   install.packages("tidyverse")
+-   install.packages("ggplot2")
+-   install.packages("lubridate")
+-   install.packages("anytime")
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(lubridate)
+library(data.table)
+library(ggplot2)
+library(anytime)
+```
+
+Import data from local drive.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+Jul21 <- read_csv("202107-divvy-tripdata.csv")
+Aug21 <- read_csv("202108-divvy-tripdata.csv")
+Sep21 <- read_csv("202109-divvy-tripdata.csv")
+```
+
+##### **STEP TWO:** EXAMINE THE DATA 
+
+Examine the dataframe for an overview of the data. Review column names, **colnames()**. Then, we need to combine all data one dataframe. Then we examine dataframes to find dimensions, **dim()**, the first, **head()**, and the last, **tail()**, six rows in the dataframe, the summary, **summary()**, statistics on the columns of the dataframe, and review the data type structure of columns, **str()**.  
+
+```{r}
+colnames(Jul21)
+colnames(Aug21)
+colnames(Sep21)
+```
+
+Since all column names are the same. We can combine the data for each month into quarters.
+
+```{r}
+q3_2021 <- bind_rows(Jul21, Aug21, Sep21)
+```
+
+```{r}
+View(q3_2021) 
+```
+
+```{r}
+nrow(q3_2021)
+```
+
+```{r}
+dim(q3_2021) 
+```
+
+```{r}
+head(q3_2021) 
+```
+
+```{r}
+tail(q3_2021)
+```
+
+```{r}
+summary(q3_2021)
+```
+
+```{r}
+str(q3_2021)
+```
+
+Create new columns as for *date*, *month*, *day*, *year*, *day_of_week*, and *ride_length* in seconds.
+
+```{r}
+q3_2021$date <- as.Date(q3_2021$started_at)
+q3_2021$month <- format(as.Date(q3_2021$date), "%m")
+q3_2021$month <- month.name[as.numeric(q3_2021$month)]
+q3_2021$day <- format(as.Date(q3_2021$date), "%d")
+q3_2021$year <- format(as.Date(q3_2021$date), "%Y")
+q3_2021$day_of_week <- format(as.Date(q3_2021$date), "%A")
+q3_2021$ride_length <- difftime(q3_2021$ended_at,q3_2021$started_at)
+```
+
+Convert *ride_length* column to numeric in order to run calculations on the data. First, check to see if the data type is numeric, and then convert if needed.
+
+```{r}
+is.numeric(q3_2021$ride_length)
+```
+
+Recheck *ride_length* data type.
+
+```{r}
+q3_2021$ride_length <- as.numeric(as.character(q3_2021$ride_length))
+is.numeric(q3_2021$ride_length)
+```
+
+##### **STEP THREE:**  CLEAN DATA
+
+**na.omit()** will remove all NA from the dataframe. 
+
+```{r}
+q3_2021 <- na.omit(q3_2021)
+```
+
+Remove rows with the *ride_id* column character length is not 16. This will remove all the scientific ride ids that we noticed while examining the data.
+
+```{r}
+q3_2021 <- subset(q3_2021, nchar(as.character(ride_id)) == 16)
+```
+
+Remove rows with the *ride_length* less than 60 seconds or 1 minute.
+
+```{r}
+q3_2021 <- subset (q3_2021, ride_length > 59)
+```
+
+##### **STEP FOUR:**  ANALYZE DATA
+
+Analyze the dataframe by find the **mean**, **median**, **max** (maximum), and **min** (minimum) of *ride_length*.
+
+```{r}
+mean(q3_2021$ride_length)
+```
+
+```{r}
+median(q3_2021$ride_length)
+```
+
+```{r}
+max(q3_2021$ride_length)
+```
+
+```{r}
+min(q3_2021$ride_length)
+```
+
+Run a statistical summary of the *ride_length*.
+
+```{r}
+summary(q3_2021$ride_length)
+```
+
+Compare the members and casual users
+
+```{r}
+aggregate(q3_2021$ride_length ~ q3_2021$member_casual, FUN = mean)
+```
+
+```{r}
+aggregate(q3_2021$ride_length ~ q3_2021$member_casual, FUN = median)
+```
+
+```{r}
+aggregate(q3_2021$ride_length ~ q3_2021$member_casual, FUN = max)
+```
+
+```{r}
+aggregate(q3_2021$ride_length ~ q3_2021$member_casual, FUN = min)
+```
+
+Aggregate the average ride length by each day of the week for members and users.
+
+```{r}
+aggregate(q3_2021$ride_length ~ q3_2021$member_casual + q3_2021$day_of_week, FUN = mean)
+```
+
+Sort the days of the week in order.
+
+```{r}
+q3_2021$day_of_week <- ordered(q3_2021$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+```
+
+Assign the aggregate the average ride length by each day of the week for members and users to x.
+
+```{r}
+x <- aggregate(q3_2021$ride_length ~ q3_2021$member_casual + q3_2021$day_of_week, FUN = mean)
+
+head(x)
+```
+
+Find the average ride length of member riders and casual riders per day and assign it to y.
+
+```{r}
+y <- q3_2021 %>% 
+  mutate(weekday = wday(started_at)) %>%
+  group_by(member_casual, weekday) %>%
+  summarise(number_of_rides = n(), 
+            average_duration = mean(ride_length), .groups = 'drop') %>%
+  arrange(member_casual, weekday)
+
+head(y)
+```
+
+Analyze the dataframe to find the frequency of member riders, casual riders, classic bikes, docked bikes, and electric bikes.
+
+```{r}
+table(q3_2021$member_casual)
+table(q3_2021$rideable_type)
+table(q3_2021$day_of_week)
+table(q3_2021$month)
+```
+
+##### **STEP FIVE:**  VISUALIZATION
+
+Display full digits instead of scientific number.
+
+```{r}
+options(scipen=999)
+```
+
+Plot the number of rides by user type during the week.
+
+```{r}
+q3_2021 %>% 
+  mutate(day_of_week) %>% 
+  group_by(member_casual,day_of_week) %>% 
+  summarise(number_of_rides = n(), average_duration = mean(ride_length), .groups = 'drop') %>% 
+  arrange(member_casual, day_of_week)  %>% 
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge")+
+labs(x = "Days of Week",
+     y= "Number of Rides", 
+     title= "Days of the Week")
+```
+
+Plot the duration of the ride by user type during the week.
+
+```{r}
+q3_2021 %>% 
+  mutate(day_of_week) %>% 
+  group_by(member_casual, day_of_week) %>% 
+  summarise(number_of_rides = n(), average_duration = mean(ride_length), .groups = 'drop') %>% 
+  arrange(member_casual, day_of_week)  %>% 
+  ggplot(aes(x = day_of_week, y = average_duration, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(x = "Days of Week",
+       y= "Average Duration in Seconds", 
+       title= "Days of the Week vs Average Duration")
+```
+
+Create new dataframe for plots for weekday trends vs weekend trends.
+
+```{r}
+mc<- as.data.frame(table(q3_2021$day_of_week,q3_2021$member_casual))
+```
+
+Rename columns
+
+```{r}
+mc<-rename(mc, day_of_week = Var1, member_casual = Var2)
+
+head(mc)
+```
+
+Weekday trends (Monday through Friday).
+
+```{r}
+mc %>%
+  filter(day_of_week == "Monday" |
+           day_of_week == "Tuesday" |
+           day_of_week == "Wednesday" |
+           day_of_week == "Thursday" |
+           day_of_week == "Friday") %>%
+  ggplot(aes(x = day_of_week, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity" , position = "dodge") +
+  labs(title = "Weekdays Trends",
+       x= "Days Of The Week",
+       y = "Number of Rides")
+```
+
+Weekend trends (Sunday and Saturday).
+
+```{r}
+mc %>%
+  filter(day_of_week == "Sunday" |
+           day_of_week == "Saturday") %>%
+  ggplot(aes(x = day_of_week, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Weekends Trends",
+       x= "Sunday vs Saturday",
+       y = "Number of Rides")
+```
+
+Create dataframe for member and casual riders vs ride type
+
+```{r}
+rt<- as.data.frame(table(q3_2021$rideable_type,q3_2021$member_casual))
+```
+
+Rename columns.
+
+```{r}
+rt<-rename(rt, rideable_type = Var1, member_casual = Var2)
+
+head(rt)
+```
+
+Plot for bike user vs bike type.
+
+```{r}
+rt %>%
+  filter(member_casual == "member" |
+           member_casual == "casual") %>%
+  ggplot(aes(x = rideable_type, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Riders and Ride Types",
+       x= "Rideable Types",
+       y = "Number of Rides")
+```
+
+Create vector of month names for Q3 2021
+septmeber 
+```{r}
+q3_months <- c("July", "August", "Septmber")
+```
+
+Subset month.name to include only Q3 2021 months
+
+```{r}
+q3_month_names <- month.name[match(q3_months, month.name)]
+```
+
+Create trips_by_month dataframe with only Q3 2021 months
+
+```{r}
+trips_by_month <- data.frame(month = q3_month_names, count = table(q3_2021$month))
+```
+
+Set the levels of the month variable in the trips_by_month dataframe
+
+```{r}
+trips_by_month$month <- factor(trips_by_month$month, levels = c("July", "August", "Septmber"))
+ggplot(trips_by_month, aes(x = month, y = count.Freq)) +
+geom_bar(stat = "identity", fill = "#F8766D") +
+  labs(x = "Month", y = "Number of Rides", title = "Number of Rides by Month in Q3 2021")
+```
+
+##### **STEP SIX:**  EXPORT ANALYZED DATA
+
+Save the analyzed data as a new file. fwrite(q3_2021, "q3_2021.csv")

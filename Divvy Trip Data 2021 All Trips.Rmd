@@ -1,0 +1,366 @@
+---
+title: "Cyclistic Case Study 2021 All Trips"
+author: "Hezar K"
+date: "2022-11-29"
+output: html_document
+---
+
+This analysis is for Cyclistic Case Study for Google Data Analytics Course. This is an analysis for the year of 2021.
+
+##### **STEP ONE:** INSTALL REQUIRED PACKAGES AND IMPORT DATA
+
+Install the required packages. **Tidyverse** package to import and wrangling the data and **ggplot2** package for visualization of the data. **Lubridate** package for date parsing and **anytime** package for the datetime conversion.
+
+-   install.packages("tidyverse")
+-   install.packages("ggplot2")
+-   install.packages("lubridate")
+-   install.packages("anytime")
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(lubridate)
+library(data.table)
+library(ggplot2)
+library(anytime)
+library(dplyr)
+```
+
+Import data from local drive.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+Jan21 <- read_csv("202101-divvy-tripdata.csv")
+Feb21 <- read_csv("202102-divvy-tripdata.csv")
+Mar21 <- read_csv("202103-divvy-tripdata.csv")
+Apr21 <- read_csv("202104-divvy-tripdata.csv")
+May21 <- read_csv("202105-divvy-tripdata.csv")
+Jun21 <- read_csv("202106-divvy-tripdata.csv")
+Jul21 <- read_csv("202107-divvy-tripdata.csv")
+Aug21 <- read_csv("202108-divvy-tripdata.csv")
+Sep21 <- read_csv("202109-divvy-tripdata.csv")
+Oct21 <- read_csv("202110-divvy-tripdata.csv")
+Nov21 <- read_csv("202111-divvy-tripdata.csv")
+Dec21 <- read_csv("202112-divvy-tripdata.csv")
+```
+
+##### **STEP TWO:** EXAMINE THE DATA
+
+Examine the dataframe for an overview of the data. Review column names, **colnames()**. Then, we need to combine all data one dataframe. Then we examine dataframes to find dimensions, **dim()**, the first, **head()**, and the last, **tail()**, six rows in the dataframe, the summary, **summary()**, statistics on the columns of the dataframe, and review the data type structure of columns, **str()**. I have removed the output for colnames(Mar21) through colnames(Dec21) as they are all the same.
+
+```{r}
+colnames(Jan21)
+colnames(Feb21)
+```
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+colnames(Mar21)
+colnames(Apr21)
+colnames(May21)
+colnames(Jun21)
+colnames(Jul21)
+colnames(Aug21)
+colnames(Sep21)
+colnames(Oct21)
+colnames(Nov21)
+colnames(Dec21)
+```
+
+Since all column names are the same. We can combine the data for each month into quarters.
+
+```{r}
+all_trips <- bind_rows(Jan21, Feb21, Mar21, Apr21, May21, Jun21, Jul21, Aug21, Sep21, Oct21, Nov21, Dec21)
+```
+
+View(all_trips)
+
+```{r}
+nrow(all_trips)
+```
+
+```{r}
+dim(all_trips) 
+```
+
+```{r}
+head(all_trips) 
+```
+
+```{r}
+tail(all_trips)
+```
+
+```{r}
+summary(all_trips)
+```
+
+```{r}
+str(all_trips)
+```
+
+Create new columns as for *date*, *month*, *day*, *year*, *day_of_week*, and *ride_length* in seconds.
+
+```{r}
+all_trips$date <- as.Date(all_trips$started_at)
+all_trips$month <- format(as.Date(all_trips$date), "%m")
+all_trips$month <- month.name[as.numeric(all_trips$month)]
+all_trips$day <- format(as.Date(all_trips$date), "%d")
+all_trips$year <- format(as.Date(all_trips$date), "%Y")
+all_trips$day_of_week <- format(as.Date(all_trips$date), "%A")
+all_trips$ride_length <- difftime(all_trips$ended_at,all_trips$started_at)
+```
+
+Convert *ride_length* column to numeric in order to run calculations on the data. First, check to see if the data type is numeric, and then convert if needed.
+
+```{r}
+is.numeric(all_trips$ride_length)
+```
+
+Recheck *ride_length* data type.
+
+```{r}
+all_trips$ride_length <- as.numeric(as.character(all_trips$ride_length))
+is.numeric(all_trips$ride_length)
+```
+
+##### **STEP THREE:** CLEAN DATA
+
+**na.omit()** will remove all NA from the dataframe.
+
+```{r}
+all_trips <- na.omit(all_trips)
+```
+
+Remove rows with the *ride_id* column character length is not 16. This will remove all the scientific ride ids that we noticed while examining the data.
+
+```{r}
+all_trips <- subset(all_trips, nchar(as.character(ride_id)) == 16)
+```
+
+Remove rows with the *ride_length* less than 60 seconds or 1 minute.
+
+```{r}
+all_trips <- subset (all_trips, ride_length > 59)
+```
+
+##### **STEP FOUR:** ANALYZE DATA
+
+Analyze the dataframe by find the **mean**, **median**, **max** (maximum), and **min** (minimum) of *ride_length*.
+
+```{r}
+mean(all_trips$ride_length)
+```
+
+```{r}
+median(all_trips$ride_length)
+```
+
+```{r}
+max(all_trips$ride_length)
+```
+
+```{r}
+min(all_trips$ride_length)
+```
+
+Run a statistical summary of the *ride_length*.
+
+```{r}
+summary(all_trips$ride_length)
+```
+
+Compare the members and casual users
+
+```{r}
+aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = mean)
+```
+
+```{r}
+aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = median)
+```
+
+```{r}
+aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = max)
+```
+
+```{r}
+aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = min)
+```
+
+Aggregate the average ride length by each day of the week for members and users.
+
+```{r}
+aggregate(all_trips$ride_length ~ all_trips$member_casual + all_trips$day_of_week, FUN = mean)
+```
+
+Sort the days of the week in order.
+
+```{r}
+all_trips$day_of_week <- ordered(all_trips$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+```
+
+Assign the aggregate the average ride length by each day of the week for members and users to x.
+
+```{r}
+x <- aggregate(all_trips$ride_length ~ all_trips$member_casual + all_trips$day_of_week, FUN = mean)
+
+head(x)
+```
+
+Find the average ride length of member riders and casual riders per day and assign it to y.
+
+```{r}
+y <- all_trips %>% 
+  mutate(weekday = wday(started_at)) %>%
+  group_by(member_casual, weekday) %>%
+  summarise(number_of_rides = n(), 
+            average_duration = mean(ride_length), .groups = 'drop') %>%
+  arrange(member_casual, weekday)
+
+head(y)
+```
+
+Analyze the dataframe to find the frequency of member riders, casual riders, classic bikes, docked bikes, and electric bikes.
+
+```{r}
+table(all_trips$member_casual)
+table(all_trips$rideable_type)
+table(all_trips$day_of_week)
+table(all_trips$month)
+```
+
+##### **STEP FIVE:** VISUALIZATION
+
+Display full digits instead of scientific number.
+
+```{r}
+options(scipen=999)
+```
+
+Plot the number of rides by user type during the week.
+
+```{r}
+all_trips %>% 
+  mutate(day_of_week) %>% 
+  group_by(member_casual,day_of_week) %>% 
+  summarise(number_of_rides = n(), average_duration = mean(ride_length), .groups = 'drop') %>% 
+  arrange(member_casual, day_of_week)  %>% 
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge")+
+labs(x = "Days of Week",
+     y= "Number of Rides", 
+     title= "Days of the Week")
+```
+
+Plot the duration of the ride by user type during the week.
+
+```{r}
+all_trips %>% 
+  mutate(day_of_week) %>% 
+  group_by(member_casual, day_of_week) %>% 
+  summarise(number_of_rides = n(), average_duration = mean(ride_length), .groups = 'drop') %>% 
+  arrange(member_casual, day_of_week)  %>% 
+  ggplot(aes(x = day_of_week, y = average_duration, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(x = "Days of Week",
+       y= "Average Duration in Seconds", 
+       title= "Days of the Week vs Average Duration")
+```
+
+Create new dataframe for plots for weekday trends vs weekend trends.
+
+```{r}
+mc<- as.data.frame(table(all_trips$day_of_week,all_trips$member_casual))
+```
+
+Rename columns
+
+```{r}
+mc<-rename(mc, day_of_week = Var1, member_casual = Var2)
+
+head(mc)
+```
+
+Weekday trends (Monday through Friday).
+
+```{r}
+mc %>%
+  filter(day_of_week == "Monday" |
+           day_of_week == "Tuesday" |
+           day_of_week == "Wednesday" |
+           day_of_week == "Thursday" |
+           day_of_week == "Friday") %>%
+  ggplot(aes(x = day_of_week, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity" , position = "dodge") +
+  labs(title = "Weekdays Trends",
+       x= "Days Of The Week",
+       y = "Number of Rides")
+```
+
+Weekend trends (Sunday and Saturday).
+
+```{r}
+mc %>%
+  filter(day_of_week == "Sunday" |
+           day_of_week == "Saturday") %>%
+  ggplot(aes(x = day_of_week, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Weekends Trends",
+       x= "Sunday vs Saturday",
+       y = "Number of Rides")
+```
+
+Create dataframe for member and casual riders vs ride type
+
+```{r}
+rt<- as.data.frame(table(all_trips$rideable_type,all_trips$member_casual))
+```
+
+Rename columns.
+
+```{r}
+rt<-rename(rt, rideable_type = Var1, member_casual = Var2)
+
+head(rt)
+```
+
+Plot for bike user vs bike type.
+
+```{r}
+rt %>%
+  filter(member_casual == "member" |
+           member_casual == "casual") %>%
+  ggplot(aes(x = rideable_type, y = Freq, fill = member_casual))+
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Rides and Ride Types",
+       x= "Rideable Types",
+       y = "Number of Rides")
+```
+
+Create vector of month names for all trips
+
+```{r}
+all_trips_months <- c("January", "February", "March","April", "May", "June","July", "August", "Septmber","October", "November", "December")
+```
+
+Subset month.name to include only all trips
+
+```{r}
+all_trips_month_names <- month.name[match(all_trips_months, month.name)]
+```
+
+Create trips_by_month dataframe with only all trips
+
+```{r}
+trips_by_month <- data.frame(month = all_trips_month_names, count = table(all_trips$month))
+```
+
+Set the levels of the month variable in the trips_by_month dataframe
+
+```{r}
+trips_by_month$month <- factor(trips_by_month$month, levels = c("January", "February", "March","April", "May", "June","July", "August", "Septmber","October", "November", "December"))
+ggplot(trips_by_month, aes(x = month, y = count.Freq)) +
+geom_bar(stat = "identity", fill = "#F8766D") +
+  labs(x = "Month", y = "Number of Rides", title = "Number of Rides by Month in All Trips")
+```
+
+##### **STEP SIX:** EXPORT ANALYZED DATA
+
+Save the analyzed data as a new file. fwrite(all_trips, "all_trips.csv")
