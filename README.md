@@ -3,7 +3,7 @@ Cyclistic Case Study
 
 This is a  case study for one of Google's Data Analytics Professional Certificate capstone projects. Cyclistic is a fictional bike sharing company based and operating in Chicago. 
 
-I have upload files for the case study using RStudio. I have write step by step analysis to find answers for the business questions, posed by the case study. Important to note, while some steps include removing or deleting data, this is done without changing the original dataset/dataframe. It is never recommended for a junior analyst to make changes to the original data. Removing NULLs or NAs in a dataset/dataframe should be consulted, as it may be used in some analysis-es.
+I have upload pdf files for the case study using RStudio. I have write step by step analysis to find answers for the business questions, posed by the case study. Important to note, while some steps include removing or deleting data, this is done without changing the original dataset/dataframe. It is never recommended for a junior analyst to make changes to the original data. Removing NULLs or NAs in a dataset/dataframe should be consulted, as it may be used in some analysis-es.
 
 About Cyclistic
 
@@ -17,26 +17,28 @@ Moreno has set a clear goal: Design marketing strategies aimed at converting cas
 
 An analysis for year 2021 was done to make better marketing business decisions.
 
-A Monthly Analysis:
+Monthly Analyses:
 
-[January 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Jan21.pdf)  
-[February 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Feb21.pdf)  
-[March 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Mar21.pdf)  
-[April 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Apr21.pdf)  
-[May 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20May21.pdf)  
-[June 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Jun21.pdf)  
-[July 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Jul21.pdf)  
-[August 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Aug21.pdf)  
-[September 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Sep21.pdf)  
-[October 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Oct21.pdf)  
-[November 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Nov21.pdf)  
-[December 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Dec21.pdf)  
+[January 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Jan21.pdf)  
+[February 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Feb21.pdf)  
+[March 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Mar21.pdf)  
+[April 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Apr21.pdf)  
+[May 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20May21.pdf)  
+[June 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Jun21.pdf)  
+[July 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Jul21.pdf)  
+[August 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Aug21.pdf)  
+[September 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Sep21.pdf)  
+[October 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Oct21.pdf)  
+[November 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Nov21.pdf)  
+[December 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Dec21.pdf)  
 
-A Quarterly Analysis:  
-[First Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Q1-2021.pdf)  
-[Second Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Q2-2021.pdf)  
-[Third Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Q3-2021.pdf)  
-[Fourth Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%20Q4-2021.pdf)  
+Quarterly Analyses:
 
-A Year Analysis:  
-[Divvy Trip Data 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/f0569e7d89ae96eb5e43dfa5462f058059be5f20/Cyclistic%20Case%20Study%202021%20All%20Trips.pdf)
+[First Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q1%202021.pdf)  
+[Second Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q2%202021.pdf)  
+[Third Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q3%202021.pdf)  
+[Fourth Quarter 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%20Q4%202021.pdf)  
+
+The Year 2021 Analysis:
+
+[Divvy Trip Data 2021](https://github.com/hezarbamerni/Cyclistic_Case_Study/blob/main/Cyclistic%20Case%20Study%202021%20All%20Trips.pdf)
