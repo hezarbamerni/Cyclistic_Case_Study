@@ -84,7 +84,7 @@ WHERE
     AND member_casual IS NOT NULL
     AND TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 59;
 	
---Create a view to run queries. clean and transform the data: The data may need to be cleaned and transformed before it can be analyzed. 
+--Create a view of the clean data to run queries for analysis. 
 CREATE OR REPLACE VIEW alltrips21v AS
 SELECT 
   id,
@@ -122,12 +122,3 @@ WHERE id IS NOT NULL
   AND member_casual IS NOT NULL
   AND TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60;
   
---row count for alltrips21 table and all views
-SELECT
-  (SELECT COUNT(*) FROM alltrips21) AS Total_rides,
-  (SELECT COUNT(*) FROM alltrips21v) AS Cleaned_data,
-  (SELECT COUNT(*) FROM alltrips_casual) AS Casual_riders_count,
-  (SELECT COUNT(*) FROM alltrips_member) AS Member_riders_count,
-  (SELECT COUNT(*) FROM alltrips_rtcb) AS Classic_bike_count,
-  (SELECT COUNT(*) FROM alltrips_rtdb) AS Docked_bike_count,
-  (SELECT COUNT(*) FROM alltrips_rteb) AS Electric_bike_count;
