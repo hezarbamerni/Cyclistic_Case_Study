@@ -1,8 +1,12 @@
---I have created a MySQL table called "Alltrips21" in my "cyclistic_study" database, which includes 13 columns that define the different attributes of each bike ride taken in 2021 by Cyclistic's customers. After importing data from tables named jan21 through dec21, I wanted to create a view that makes it easier to analyze this data, so I created a new view called "alltrips21v".
-
---This view includes all the columns from the original table, as well as three additional columns that calculate the length of each ride, extract the day of the week and month name from the start time using the DATE_FORMAT function. I also included several conditions in the WHERE clause to filter out any rows with missing or invalid data.
-
---Creating this view has allowed me to analyze the data in a more convenient format, and I can now use SQL queries that refer to this view instead of the original table to gain insights into Cyclistic's bike-share service usage throughout 2021.
+/*
+I have created a MySQL table called "Alltrips21" in my "cyclistic_study" database, which includes 13 columns that define the different
+attributes of each bike ride taken in 2021 by Cyclistic's customers. After importing data from tables named jan21 through dec21, I wanted
+to create a view that makes it easier to analyze this data, so I created a new view called "alltrips21v". This view includes all the columns
+from the original table, as well as three additional columns that calculate the length of each ride, extract the day of the week and month name
+from the start time using the DATE_FORMAT function. I also included several conditions in the WHERE clause to filter out any rows with missing
+or invalid data. Creating this view has allowed me to analyze the data in a more convenient format, and I can now use SQL queries that refer to
+this view instead of the original table to gain insights into Cyclistic's bike-share service usage throughout 2021.
+*/
 
 -- CREATE A TABLE ALLTRIPS21
 CREATE TABLE cyclistic_study.Alltrips21 (
