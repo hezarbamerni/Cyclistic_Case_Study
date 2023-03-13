@@ -64,7 +64,6 @@ UNION ALL
 SELECT null, ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual
 FROM dec21
 ORDER BY started_at;
-
 	
 -- Create a view of the clean data to run queries for analysis. 
 CREATE OR REPLACE VIEW alltrips21v AS
@@ -103,4 +102,3 @@ WHERE id IS NOT NULL
   AND end_lng IS NOT NULL
   AND member_casual IS NOT NULL
   AND TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60;
-  
