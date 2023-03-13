@@ -1,4 +1,8 @@
+
 /*
++The following queries are based on the view table called 'alltrips21v', which is a clean data table containing processed and formatted data from the original source.
++
++
 +This query finds the maximum, minimum, and average ride duration for each combination of rider type (member_casual)
 +and day of the week (day_of_week). It does this by first selecting the member_casual, day_of_week, and ride_length
 +columns from the alltrips21v view, and then grouping the results by member_casual and day_of_week.
@@ -42,6 +46,7 @@ GROUP BY alias.member_casual,
 | member       | Thursday    | 88005	   | 60 	 |   751.7400  |
 +--------------+-------------+-------------+-------------+-------------+
 
+
 /*
 +This query finds the maximum, minimum, and average ride duration for each rider type (member_casual).
 +It does this by selecting the member_casual and ride_length columns from the alltrips21v view, and
@@ -57,7 +62,6 @@ FROM (SELECT member_casual,
 	     ride_length
       FROM alltrips21v) alias
 GROUP BY   alias.member_casual;
-
 
 +---------------------------------------------------------+		 
 |			   output			  |
