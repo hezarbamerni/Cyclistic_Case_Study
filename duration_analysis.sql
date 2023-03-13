@@ -1,5 +1,5 @@
 /*
-+This query finds the maximum, minimum, and average ride duration for each combination of member type (member_casual)
++This query finds the maximum, minimum, and average ride duration for each combination of rider type (member_casual)
 +and day of the week (day_of_week). It does this by first selecting the member_casual, day_of_week, and ride_length
 +columns from the alltrips21v view, and then grouping the results by member_casual and day_of_week.
 +The maximum, minimum, and average ride durations are calculated using the MAX(), MIN(), and AVG() aggregate functions, respectively.
@@ -43,7 +43,7 @@ GROUP BY alias.member_casual,
 +--------------+-------------+-------------+-------------+-------------+
 
 /*
-+This query finds the maximum, minimum, and average ride duration for each member type (member_casual).
++This query finds the maximum, minimum, and average ride duration for each rider type (member_casual).
 +It does this by selecting the member_casual and ride_length columns from the alltrips21v view, and
 +then grouping the results by member_casual. The maximum, minimum, and average ride durations are again
 +calculated using the MAX(), MIN(), and AVG() aggregate functions.
