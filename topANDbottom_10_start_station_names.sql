@@ -1,9 +1,8 @@
 /*
-+These queries retrieves the top and bottom 10 start station names from a dataset named "alltrips21v" by grouping the data by start station name and
-+counting the number of trips that started from each station. The bottom 10 query sorts the results in ascending order by the number of trips and
-+uses the LIMIT keyword to limit the results to the bottom 10 stations only. The top 10 query sorts the results in descending order by the number
-+of trips, which means that the station with the highest number of trips will appear first and the LIMIT keyword is used to limit the results to the
-+top 10 stations only.
++These queries retrieves the top and bottom 10 start station names from a dataset named "alltrips21v" by grouping the data by start station name and counting the
++number of trips that started from each station. The bottom 10 query sorts the results in ascending order by the number of trips and uses the LIMIT keyword to
++limit the results to the bottom 10 stations only. The top 10 query sorts the results in descending order by the number of trips, which means that the station
++with the highest number of trips will appear first and the LIMIT keyword is used to limit the results to the top 10 stations only.
 */
 
 SELECT start_station_name, COUNT(*) as num_trips
