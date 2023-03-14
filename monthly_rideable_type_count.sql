@@ -1,8 +1,7 @@
 /*
-+This query retrieves the number of trips taken for each rideable type in each month, using data from the "alltrips21v" dataset. The results are filtered
-+to include only the rideable types "docked_bike", "classic_bike", and "electric_bike". The data is then grouped by both rideable type and month,
-+and the trip count is calculated for each group. The results are then ordered by rideable type and month, with months ordered in chronological order from
-+January to December.
++This query retrieves the number of trips taken for each rideable type in each month, using data from the "alltrips21v" dataset. The results are filtered to include
++only the rideable types "docked_bike", "classic_bike", and "electric_bike". The data is then grouped by both rideable type and month, and the trip count is calculated
++for each group. The results are then ordered by rideable type and month, with months ordered in chronological order from January to December.
 */
 
 SELECT rideable_type, month_name, COUNT(*) as trip_count
@@ -10,7 +9,6 @@ FROM alltrips21v
 WHERE rideable_type IN ('docked_bike', 'classic_bike', 'electric_bike')
 GROUP BY rideable_type, month_name
 ORDER BY rideable_type, FIELD(month_name, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-
 
 +-----------------------------------------+
 |                  Output                 |
