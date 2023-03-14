@@ -19,13 +19,13 @@ LIMIT 10;
 +-------------------------------------+-----------+
 | 351                                 | 1         |
 | Olive Harvey College                | 1         |
-| Indiana Ave & 133rd St	            | 1         |
-| N Shore Channel Trail & Argyle Ave	| 1         |
+| Indiana Ave & 133rd St	          | 1         |
+| N Shore Channel Trail & Argyle Ave  | 1         |
 | N Hampden Ct & W Diversey Ave       | 1         |
 | Lyft Driver Center Private Rack     | 1         |
 | Sacramento Blvd & Polk St	          | 1         |
-| Campbell Ave & 51st St	            | 2         |
-| Washtenaw Ave & Madison St	        | 2         |
+| Campbell Ave & 51st St	          | 2         |
+| Washtenaw Ave & Madison St	      | 2         |
 | Halsted St & 63rd St	              | 3         |
 +-------------------------------------+-----------+
 
