@@ -11,7 +11,7 @@ FROM alltrips21v
 GROUP BY rideable_type;
 
 +---------------------------------+		 
-|			         output			        |
+|            output               |
 +---------------+-----------------+
 | rideable_type | avg_ride_length |
 +---------------+-----------------+
@@ -26,7 +26,7 @@ FROM alltrips21v
 GROUP BY rideable_type;
 
 +-----------------------------+		 
-|			         output			    |
+|            output           |
 +---------------+-------------+
 | rideable_type | ride_count  |
 +---------------+-------------+
@@ -41,7 +41,7 @@ FROM alltrips21v
 GROUP BY rideable_type, member_casual;
 
 +-------------------------------------------+		 
-|			                output                |
+|                   output                  |
 +---------------+---------------+-----------+
 | rideable_type | member_casual | num_rides |
 +---------------+---------------+-----------+
