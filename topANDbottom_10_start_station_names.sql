@@ -44,7 +44,7 @@ LIMIT 10;
 | Streeter Dr & Grand Ave              	| 79204     |
 | Michigan Ave & Oak St              	| 42196     |
 | Wells St & Concord Ln              	| 41180     |
-| Millennium Park              	| 39950     |
+| Millennium Park              	      | 39950     |
 | Clark St & Elm St              	|	39049     |
 | Wells St & Elm St              	| 35665     |
 | Theater on the Lake              	| 35350     |
