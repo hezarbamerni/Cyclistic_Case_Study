@@ -13,20 +13,20 @@ ORDER BY num_trips ASC
 LIMIT 10;
 
 +-------------------------------------------------+		 
-|                 output                          |
+|                    output                       |
 +-------------------------------------+-----------+
 | start_station_name                  | num_trips | 
 +-------------------------------------+-----------+
 | 351                                 | 1         |
 | Olive Harvey College                | 1         |
-| Indiana Ave & 133rd St	          | 1         |
+| Indiana Ave & 133rd St              | 1         |
 | N Shore Channel Trail & Argyle Ave  | 1         |
 | N Hampden Ct & W Diversey Ave       | 1         |
 | Lyft Driver Center Private Rack     | 1         |
-| Sacramento Blvd & Polk St	          | 1         |
-| Campbell Ave & 51st St	          | 2         |
-| Washtenaw Ave & Madison St	      | 2         |
-| Halsted St & 63rd St	              | 3         |
+| Sacramento Blvd & Polk St           | 1         |
+| Campbell Ave & 51st St              | 2         |
+| Washtenaw Ave & Madison St          | 2         |
+| Halsted St & 63rd St                | 3         |
 +-------------------------------------+-----------+
 
 
@@ -45,8 +45,8 @@ LIMIT 10;
 | Michigan Ave & Oak St               | 42196     |
 | Wells St & Concord Ln               | 41180     |
 | Millennium Park              	      | 39950     |
-| Clark St & Elm St              	   | 39049     |
-| Wells St & Elm St              	   | 35665     |
+| Clark St & Elm St                   | 39049     |
+| Wells St & Elm St                   | 35665     |
 | Theater on the Lake                 | 35350     |
 | Kingsbury St & Kinzie St            | 31748     |
 | Clark St & Lincoln Ave              | 31636     |
