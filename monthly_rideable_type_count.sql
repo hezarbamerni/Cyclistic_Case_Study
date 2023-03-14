@@ -16,6 +16,7 @@ ORDER BY rideable_type, FIELD(month_name, 'January', 'February', 'March', 'April
 |                  Output                 |
 +---------------+-------------+-----------+
 | rideable_type | month_name | trip_count | 
++---------------+-------------+-----------+
 | classic_bike	| January    | 60763      |
 | classic_bike	| February   | 34054      |
 | classic_bike	| March	     | 150390     |
@@ -30,7 +31,7 @@ ORDER BY rideable_type, FIELD(month_name, 'January', 'February', 'March', 'April
 | classic_bike	| December   | 99068      |
 | docked_bike   | January    | 2085       |
 | docked_bike 	| February   | 1259       |
-| docked_bike	  | March      | 15571      |
+| docked_bike   | March      | 15571      |
 | docked_bike   | April      | 24568      |
 | docked_bike   | May        | 43053      |
 | docked_bike   | June       | 51377      |
@@ -50,8 +51,8 @@ ORDER BY rideable_type, FIELD(month_name, 'January', 'February', 'March', 'April
 | electric_bike | August     | 125729     |
 | electric_bike | September  | 122763     |
 | electric_bike | October    | 137613     |
-| electric_bike | November	 | 92911      |
-| electric_bike | December	 | 70095      |
+| electric_bike | November   | 92911      |
+| electric_bike | December   | 70095      |
 +---------------+------------+------------+
 
 
@@ -62,11 +63,14 @@ GROUP BY month_name
 ORDER BY num_rides DESC
 LIMIT 1;
 
-+---------------------------------------+
-|                Output                 |
-+---------------+-----------+-----------+
-| docked_bike   | July      | 57346     |
-+---------------+-----------+-----------+
++-------------------------+
+|          Output         |
++------------+------------+
+| month_name | trip_count | 
++------------+------------+
+| July       | 57346      |
++------------+------------+
+
 -- To get the busiest month for rides on electric bikes:
 SELECT month_name, COUNT(*) AS num_rides
 FROM alltrips_rteb
@@ -74,11 +78,13 @@ GROUP BY month_name
 ORDER BY num_rides DESC
 LIMIT 1;
 
-+---------------------------------------+
-|                Output                 |
-+---------------+-----------+-----------+
-| electric_bike | October	  | 137613    |
-+---------------+-----------+-----------+
++-------------------------+
+|          Output         |
++------------+------------+
+| month_name | trip_count | 
++------------+------------+
+| October    | 137613     |
++------------+------------+
 
 -- To get the busiest month for rides on classic bikes:
 SELECT month_name, COUNT(*) AS num_rides
@@ -87,8 +93,10 @@ GROUP BY month_name
 ORDER BY num_rides DESC
 LIMIT 1;
 
-+---------------------------------------+
-|                Output                 |
-+---------------+-----------+----------+
-| classic_bike	| July      | 498616    |
-+---------------+-----------+-----------+
++-------------------------+
+|          Output         |
++------------+------------+
+| month_name | trip_count | 
++------------+------------+
+| July       | 498616     |
++------------+------------+
