@@ -41,14 +41,14 @@ LIMIT 10;
 +-------------------------------------+-----------+
 | start_station_name                  | num_trips | 
 +-------------------------------------+-----------+
-| Streeter Dr & Grand Ave              	| 79204     |
+| Streeter Dr & Grand Ave            	| 79204     |
 | Michigan Ave & Oak St              	| 42196     |
 | Wells St & Concord Ln              	| 41180     |
 | Millennium Park              	      | 39950     |
-| Clark St & Elm St              	|	39049     |
-| Wells St & Elm St              	| 35665     |
-| Theater on the Lake              	| 35350     |
-| Kingsbury St & Kinzie St              	| 31748     |
-| Clark St & Lincoln Ave              	| 31636     |
-| Clark St & Armitage Ave              	| 31076     |
+| Clark St & Elm St              	    |	39049     |
+| Wells St & Elm St              	    | 35665     |
+| Theater on the Lake                	| 35350     |
+| Kingsbury St & Kinzie St           	| 31748     |
+| Clark St & Lincoln Ave             	| 31636     |
+| Clark St & Armitage Ave            	| 31076     |
 +-------------------------------------+-----------+ 
