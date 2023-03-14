@@ -1,10 +1,9 @@
 /*
-+These three queries are all examples of aggregating data based on rideable type in the "alltrips21v" dataset. The first query calculates the average
-+ride length for each rideable type, which could be useful for understanding the typical usage patterns of different types of bikes. The second query
-+counts the number of rides for each rideable type, providing insight into which types of bikes are most popular overall. The third query breaks down
-+the number of rides by both rideable type and member status (casual or member), allowing for a more detailed understanding of usage patterns among
-+different groups of riders. All three of these queries rely on the GROUP BY clause to group the data by rideable type and/or member status, and then
-+use aggregate functions such as COUNT() and AVG() to calculate summary statistics.
++These three queries are all examples of aggregating data based on rideable type in the "alltrips21v" dataset. The first query calculates the average ride length for
++each rideable type, which could be useful for understanding the typical usage patterns of different types of bikes. The second query counts the number of rides for
++each rideable type, providing insight into which types of bikes are most popular overall. The third query breaks down the number of rides by both rideable type and
++member status (casual or member), allowing for a more detailed understanding of usage patterns among different groups of riders. All three of these queries rely on
++the GROUP BY clause to group the data by rideable type and/or member status, and then use aggregate functions such as COUNT() and AVG() to calculate summary statistics.
 */
 
 SELECT rideable_type, AVG(ride_length) AS avg_ride_length
