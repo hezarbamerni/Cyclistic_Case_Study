@@ -17,7 +17,7 @@ GROUP BY rideable_type;
 +---------------+-----------------+
 | classic_bike	| 1116.3277       |
 | electric_bike	| 950.6565        |
-| docked_bike	  | 4715.2442       |
+| docked_bike   | 4715.2442       |
 +---------------+-----------------+
 
 
