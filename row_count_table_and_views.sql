@@ -1,10 +1,9 @@
 /*
-+This query is retrieving row count information from multiple tables and views related to bike trips data. It selects six different
-+counts using subqueries, each of which is labeled with a descriptive alias name. The first count represents the total number of
-+rides in the "alltrips21" table. The second count represents the number of cleaned rides in the "alltrips21v" view. The next
-+two counts represent the number of casual and member riders respectively, and the following two counts represent the number
-+of rides classic bikes, docked bikes, and electric bikes. Overall, this query is providing a summary of the
-+total number of bike trips, cleaned data, and the number of different types of bikes and riders in the data.
++This query is retrieving row count information from multiple tables and views related to bike trips data. It selects six different counts using subqueries, each of
++which is labeled with a descriptive alias name. The first count represents the total number of rides in the "alltrips21" table. The second count represents the 
++number of cleaned rides in the "alltrips21v" view. The next two counts represent the number of casual and member riders respectively, and the following two counts
++represent the number of rides classic bikes, docked bikes, and electric bikes. Overall, this query is providing a summary of the total number of bike trips, cleaned
++data, and the number of different types of bikes and riders in the data.
 */
 
 SELECT
