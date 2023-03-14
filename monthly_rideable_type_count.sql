@@ -52,3 +52,42 @@ ORDER BY rideable_type, FIELD(month_name, 'January', 'February', 'March', 'April
 | electric_bike | November	| 92911     |
 | electric_bike | December	| 70095     |
 +---------------+-----------+-----------+
+
+
+-- To get the busiest month for rides on docked bikes:
+SELECT month_name, COUNT(*) AS num_rides
+FROM alltrips_rtdb
+GROUP BY month_name
+ORDER BY num_rides DESC
+LIMIT 1;
+
++--------------+------------+-----------+
+|                Output                 |
++--------------+------------+-----------+
+| docked_bike   | July      | 57346     |
++---------------+-----------+-----------+
+-- To get the busiest month for rides on electric bikes:
+SELECT month_name, COUNT(*) AS num_rides
+FROM alltrips_rteb
+GROUP BY month_name
+ORDER BY num_rides DESC
+LIMIT 1;
+
++--------------+------------+-----------+
+|                Output                 |
++--------------+------------+-----------+
+| electric_bike | October	  | 137613    |
++---------------+-----------+-----------+
+
+-- To get the busiest month for rides on classic bikes:
+SELECT month_name, COUNT(*) AS num_rides
+FROM alltrips_rtcb
+GROUP BY month_name
+ORDER BY num_rides DESC
+LIMIT 1;
+
++--------------+------------+-----------+
+|                Output                 |
++--------------+------------+-----------+
+| classic_bike	| July      | 498616    |
++---------------+-----------+-----------+
